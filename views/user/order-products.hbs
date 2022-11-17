@@ -1,0 +1,32 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                 <table class="table table-dark">
+          <thead>
+            <tr>
+
+              <th scope="col">Item</th>
+              <th scope="col">quantity</th>
+              <th scope="col">price</th>
+              <th scope="col">description</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+               {{#each products}}
+    <tr>
+      <th scope="row">{{this.product.name}}</th>
+      <td>X{{this.quantity}}</td>
+      <td>{{this.product.price}}</td>
+      <td>{{this.product.description}}</td>
+      
+  
+     
+      {{/each}}
+                
+            </div>
+        </div>
+    </div>
+</section>
+

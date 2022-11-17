@@ -1,0 +1,79 @@
+<header>
+    <section>
+        
+        <nav class="navbar navbar-expand-lg navbar-custom" >
+            <a class="navbar-brand" href="#">shopspree</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart">cart <span class="badge badge-light" id="cart-count">{{cartCount}}</span></a>
+                    </li>
+                    {{#if user}}
+                    <li class="nav-item">
+                        <a href="/orders" class="nav-link">orders</a>
+
+                    </li>
+                        {{/if}}
+                       
+                        </div>
+                        {{#if user}}
+                         <div class="dropdown">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{user.username}}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="account">
+                                <a class="dropdown-item" href="/profile">profile</a>
+                                <a class="dropdown-item" href="/logout">logout</a>
+                              
+                            </div>
+                    </li>
+                </ul>
+
+            </div>
+            
+            {{else}}
+            <div class="dropdown">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                account
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="account">
+                                <a class="dropdown-item" href="/login">login</a>
+                                <a class="dropdown-item" href="/signup">signup</a>
+                              
+                            </div>
+                    </li>
+                </ul>
+
+            </div>
+            </div>
+            {{/if}}
+        </nav>
+    </section>
+</header>
+
+<style>
+    
+        /* Modify the background color */
+         
+        .navbar-custom {
+            background-color: #06beb6 ;
+        }
+        /* Modify brand and text color */
+         
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-text {
+            color: rgb(255, 255, 255);
+        }
+    
+     a { color: #fdfcfc;, } 
+</style>

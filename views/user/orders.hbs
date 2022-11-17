@@ -1,0 +1,30 @@
+ <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                 <table class="table table-dark mt-5">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">name and address</th>
+      <th scope="col">Total Amount</th>
+      <th scope="col">Status</th>
+      <th scope="col">Payment method</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+     {{#each orders}}
+    <tr>
+      <th scope="row">{{this.date}}</th>
+      <td>{{this.address.name}},{{this.address.address}}</td>
+      <td>{{this.totalAm}}</td>
+      <td>{{this.status}}</td>
+      <td>{{this.paymentMethod}}</td>
+  <td> <a class="btn btn-primary" href="/order-products/{{this._id}}">view products</a></td>
+     
+      {{/each}}
+
+
+            </div>
+        </div>
+    </div>

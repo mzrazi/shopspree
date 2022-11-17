@@ -1,0 +1,34 @@
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            <a class="btn btn-success" href="/admin/add-products">add product</a>
+        </div> 
+        <table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">slno</th>
+      <th scope="col">name</th>
+      <th scope="col">price</th>
+      <th scope="col">description</th>
+      <th>image</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each products}}
+    <tr>
+      <th scope="row">{{@index}}</th>
+      <td>{{this.name}}</td>
+      <td>{{this.price}}</td>
+      <td>{{this.description}}</td>
+      <td><img style="height:50px; width: 50px; " src="/product-image/{{this._id}}.jpg" alt=""></td>
+      <td>
+        <a class="btn btn-info" href="/admin/edit-products/{{this._id}}">edit</a>
+        <a class="btn btn-danger" href="/admin/delete-product/{{this._id}}" onclick="return confirm('are you sure?')" >delete</a>
+      </td>
+    </tr>
+    {{/each}}
+   
+  </tbody>
+</table>
+    </div>
+</section>
