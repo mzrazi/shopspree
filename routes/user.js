@@ -107,10 +107,24 @@ router.get('/orders', verifyLogin,async(req, res)=>{
   console.log(req.session.user);
 
  let orders= await userHelper.getAllOrders(req.session.user._id)
+
+
+
     res.render('user/orders', { user:req.session.user,orders })
   
 
 })
+router.post('/Cancel',(req,res)=>{
+
+  console.log("c call");
+  userHelper.cancelOrder(req.body.order).then((response)=>{
+
+    res.json(response)
+    
+
+  })
+})
+
 
 router.get('/add-to-cart/:id', verifyLogin, (req, res) => {
 
@@ -174,14 +188,11 @@ router.post('/place-order',verifyLogin, async (req, res) => {
       res.json({ pstatus: true })
     } else {
       userHelper.generateRazor(orderid, total, prolist).then((response) => {
+        
         res.json(response)
       })
     }
   })
-
-
-
-
   router.get('/order-success', verifyLogin, async (req, res) => {
     user = req.session.user
 
@@ -198,6 +209,8 @@ router.post('/place-order',verifyLogin, async (req, res) => {
   })
 
   
+
+  
   router.get('/order-products/:id', verifyLogin, async (req, res) => {
     let products = await userHelper.getOrderedP(req.params.id)
     console.log(req.params.id);
@@ -205,6 +218,7 @@ router.post('/place-order',verifyLogin, async (req, res) => {
     res.render('user/order-products', { products, user:req.session.user })
 
   })
+  
 
   router.post('/verifyPayment',verifyLogin, (req, res) => {
 
@@ -224,6 +238,7 @@ router.post('/place-order',verifyLogin, async (req, res) => {
 
   })
 
+ 
  
 
 })

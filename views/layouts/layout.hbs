@@ -18,11 +18,21 @@
 
 <body>
     {{#if admin}}
+    
+            {{#if session.adminloggedin}}
 
-    {{>admin-header}}
+                    {{>admin-header}}
+            {{else}}
+
+                    {{>blank-header}}
+            {{/if}}
+
+
     {{else}}
     
     {{>user-header}}
+
+
     {{/if}}
   
  {{{body}}}

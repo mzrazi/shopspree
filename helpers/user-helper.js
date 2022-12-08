@@ -459,6 +459,15 @@ module.exports={
                 resolve(response)
             })
         })
+    },
+
+    cancelOrder:(orderid)=>{
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.OCollection).deleteOne({_id:ObjectID(orderid)}).then(()=>{
+            
+                resolve({orderRemoved:true})
+            })
+        })
     }
 
 

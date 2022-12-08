@@ -2,19 +2,36 @@ const { response } = require('express');
 var express = require('express');
 const productHelpers = require('../helpers/product-helpers');
 var router = express.Router();
-const adm={admin:true}
+const adminHelper=require('../helpers/adminHelper')
+
+const verifyLogin = (req, res, next) => {
+  if (req.session.adminloggedin) {
+    
+
+    next()
+    
+  } else {
+    res.redirect('/admin/adminlogin')
+  }
+}
+
+
 
 
 
 /* GET users listing. */
-router.get('/',function(req, res, next) {
+
+
+router.get('/',verifyLogin, function(req, res, next) {
   productHelpers.viewproducts().then((products)=>{
     console.log(products);
     res.render('admin/view-products',{admin:true,products})
   })
- 
-  
-});
+})
+router.get('/adminlogin',(req,res)=>{
+  console.log('api call');
+    res.render('admin/ALogin',{admin:true})
+  })
 router.get('/add-products',function(req,res){
   res.render('admin/add-products',{admin:true})
 })
@@ -64,7 +81,7 @@ router.get('/edit-products/:id',async(req,res)=>{
   console.log(products);
 
   
-    res.render('admin/edit-products',{products})
+    res.render('admin/edit-products',{admin:true,products})
 
 })
 router.post('/edit-products/:id',(req,res)=>{
@@ -80,6 +97,22 @@ router.post('/edit-products/:id',(req,res)=>{
 
   })
 })
+router.post('/adminlogin',(req,res)=>{
+  console.log('reached router');
+
+  adminHelper.verifyAdmin(req.body).then((response)=>{
+    
+    
+    if(response.status){
+      req.session.user=response.user
+      req.session.adminloggedin=true;
+      res.redirect('/admin')
+    }else{
+      res.redirect('/admin/adminlogin')
+    }
+  })
+})
+
   
 
 

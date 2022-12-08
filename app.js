@@ -15,7 +15,7 @@ var fileUpload = require('express-fileupload');
 
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname,'views'));
 
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs.engine({
@@ -32,6 +32,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload())
 app.use(session({secret:'key',cookie:{maxAge:600000}}))
+app.use(function (req, res, next) {
+  res.locals.session = req.session;
+  next();
+});
 db.connect((err) => {
   if (err){
     console.log("error" + err);}

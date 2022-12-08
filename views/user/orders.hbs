@@ -20,7 +20,9 @@
       <td>{{this.totalAm}}</td>
       <td>{{this.status}}</td>
       <td>{{this.paymentMethod}}</td>
-  <td> <a class="btn btn-primary" href="/order-products/{{this._id}}">view products</a></td>
+
+  <td> <a class="btn btn-primary" href="order-products/{{this._id}}">view products</a></td>
+  <td><button class="btn btn-danger" onclick="cancelorder('{{this._id}}')">cancel order</button></td>
      
       {{/each}}
 
@@ -28,3 +30,26 @@
             </div>
         </div>
     </div>
+
+    <script>
+    function  cancelorder(orderid){
+    $.ajax({
+      url:'/Cancel',
+      method:'post',
+      data:{
+       order:orderid
+      },
+      
+
+      success:(response) => {
+
+        if(response.orderRemoved){
+          alert('order cancelled')
+        }else{
+          alert("unsuccesful")
+        }
+       
+      }
+    })
+  }
+    </script>
