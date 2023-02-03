@@ -98,7 +98,7 @@ router.post('/edit-products/:id',(req,res)=>{
   })
 })
 router.post('/adminlogin',(req,res)=>{
-  console.log('reached router');
+  console.log(req.body);
 
   adminHelper.verifyAdmin(req.body).then((response)=>{
     
